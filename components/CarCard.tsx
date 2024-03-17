@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
+
+import { calculateCarRent, generateCarImageUrl } from "@/utils";
 import { CarProps } from "@/types";
 import CustomButton from "./CustomButton";
-import { calculateCarRent, generateCarImageUrl } from "@/utils";
 import CarDetails from "./CarDetails";
 
 interface CarCardProps {
@@ -12,17 +13,20 @@ interface CarCardProps {
 }
 
 const CarCard = ({ car }: CarCardProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const { city_mpg, year, make, model, transmission, drive } = car;
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const carRent = calculateCarRent(city_mpg, year);
+
   return (
     <div className="car-card group">
-      <div className="car-card_content">
+      <div className="car-card__content">
         <h2 className="car-card__content-title">
           {make} {model}
         </h2>
       </div>
+
       <p className="flex mt-6 text-[32px] leading-[38px] font-extrabold">
         <span className="self-start text-[14px] leading-[17px] font-semibold">
           $
@@ -32,15 +36,17 @@ const CarCard = ({ car }: CarCardProps) => {
           /day
         </span>
       </p>
+
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src="/hero.png" // Replace with the actual image URL
+          src="/hero.png"
           alt="car model"
           fill
           priority
           className="object-contain"
         />
       </div>
+
       <div className="relative flex w-full mt-2">
         <div className="flex group-hover:invisible w-full justify-between text-grey">
           <div className="flex flex-col justify-center items-center gap-2">
@@ -63,6 +69,7 @@ const CarCard = ({ car }: CarCardProps) => {
             <p className="car-card__icon-text">{city_mpg} MPG</p>
           </div>
         </div>
+
         <div className="car-card__btn-container">
           <CustomButton
             title="View More"
@@ -73,6 +80,7 @@ const CarCard = ({ car }: CarCardProps) => {
           />
         </div>
       </div>
+
       <CarDetails
         isOpen={isOpen}
         closeModal={() => setIsOpen(false)}
