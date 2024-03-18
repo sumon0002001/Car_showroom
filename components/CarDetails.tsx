@@ -17,13 +17,18 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
         <Transition.Child
-      
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
         >
-          <p>henedendk</p>
           <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
-        {/* <div className="fixed inset-0 overflow-y-auto">
+        <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
@@ -52,7 +57,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => (
                 <div className="flex-1 flex flex-col gap-3">
                   <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
                     <Image
-                      src="/hero.png"
+                      src={generateCarImageUrl(car, "01")}
                       alt="car model"
                       fill
                       priority
@@ -63,7 +68,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => (
                   <div className="flex gap-3">
                     <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                       <Image
-                        src="/hero.png"
+                        src={generateCarImageUrl(car, "29")}
                         alt="car model"
                         fill
                         priority
@@ -81,7 +86,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => (
                     </div>
                     <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                       <Image
-                        src="/hero.png"
+                        src={generateCarImageUrl(car, "13")}
                         alt="car model"
                         fill
                         priority
@@ -113,7 +118,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => (
               </Dialog.Panel>
             </Transition.Child>
           </div>
-        </div> */}
+        </div>
       </Dialog>
     </Transition>
   </>
